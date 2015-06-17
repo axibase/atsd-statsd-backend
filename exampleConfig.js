@@ -63,7 +63,7 @@
  e.g. <entity>.<tag:test>.<>.<metric> --->
       series e:alfa m:delta t:test=bravo ...
 
- <metrics> denotes any number of tokens and can be used once per pattern
+ <metrics> denotes any number of metric tokens and can be used once per pattern
  it can also be omitted: <entity>..<tag:url>
  e.g. <entity>.<tag:test>.<metrics> --->
       series e:alfa m:charlie.delta t:test=bravo ...
@@ -74,19 +74,20 @@
 {
     atsd : {
         host: "192.168.1.233",
-            port: 8082,
-            protocol: "udp",
-            patterns: [
+        port: 8082,
+        protocol: "udp",
+        patterns: [
             {
                 pattern: ".*bad_lines_seen.*$",
                 atsd_pattern: "<tag:test>.<metric>"
             },
             {
-                pattern: "counters\\..*\\.wordpress\\..*$",
-                atsd_pattern: "<metric>.<tag:site>.<metrics>.<tag:url>.<metric>"
+                pattern: "alfa\\..*\\.charlie\\..*$",
+                atsd_pattern: "<entity>.<>.<tag:test>.<metric>"
             }
         ]
     },
     port: 8125,
-        backends: [ "./backends/atsd" ]
+    backends: [ "./backends/atsd" ],
+    debug: true
 }
