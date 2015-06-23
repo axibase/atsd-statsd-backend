@@ -57,6 +57,8 @@ Possible variables:
 
 You can specify other variables used by StatsD itself.
 
+As of now StatsD team has an [open bug](https://github.com/etsy/statsd/issues/462) regarding the inability for config to reload on the fly at times. So, if you change the config file while StatsD is running, it might crush. Until the bug is fixed you can add `automaticConfigReload: false` to your config, but remember to restart StatsD for the changes to take effect.
+
  Patterns
 ----------
 
