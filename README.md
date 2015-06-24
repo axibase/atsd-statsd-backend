@@ -45,19 +45,19 @@ Possible variables:
  `atsd.host`          | ATSD hostname                                                                     | -
  `atsd.port`          | ATSD port                                                                         | `8081`
  `atsd.user`          | username                                                                          | `""`
- `atsd.password`      | and password to log into ATSD                                                     | `""`
+ `atsd.password`      | password to log into ATSD                                                     | `""`
  `atsd.protocol`      | protocol: `"tcp"` or `"udp"`                                                      | `"tcp"`
  `atsd.entity`        | default entity                                                                    | local hostname
- `atsd.prefix`        | global prefix for every metric                                                    | `""`
+ `atsd.prefix`        | global prefix for each metric                                                    | `""`
  `atsd.prefixCounter` | prefix for counter metrics                                                        | `"counters"`
  `atsd.prefixTimer`   | prefix for timer metrics                                                          | `"timers"`
  `atsd.prefixGauge`   | prefix for gauge metrics                                                          | `"gauges"`
  `atsd.prefixSet`     | prefix for set metrics                                                            | `"sets"`
  `atsd.patterns`      | patterns to parse statsd metric names                                             | -
 
-You can specify other variables used by StatsD itself.
+Other variables used by StatsD itself can be specified.
 
-As of now StatsD team has an [open bug](https://github.com/etsy/statsd/issues/462) regarding the inability for config to reload on the fly at times. So, if you change the config file while StatsD is running, it might crush. Until the bug is fixed you can add `automaticConfigReload: false` to your config, but remember to restart StatsD for the changes to take effect.
+As of now, the StatsD team has an [open bug](https://github.com/etsy/statsd/issues/462) regarding the inability for config to reload on the fly at times. So, if you change the config file while StatsD is running, it might crash. Until the bug is fixed you can add `automaticConfigReload: false` to your config, but remember to restart StatsD for the changes to take effect.
 
  Patterns
 ----------
