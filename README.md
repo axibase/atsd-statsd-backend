@@ -4,9 +4,7 @@
  Purpose
 ---------
 
-This backend is designed to convert StatsD metrics into
-[ATSD API Network Command](https://axibase.com/atsd/api/#command:-series)
-format and then flush the data into ATSD.
+ATSD backend for StatsD enables you to forward metrics collected by StatsD daemon into Axibase Time-Series Database for retention, analytics, visualization, and alerting.
 
 To learn how to use StatsD and its backends visit the project's [GitHub page](https://github.com/etsy/statsd).
 
@@ -39,7 +37,7 @@ Possible variables:
  variable             | description                                                                       | default value
 ----------------------|-----------------------------------------------------------------------------------|----------------
  `debug`              | enable debug logging : `true` or `false`                                          | `false`
- `keyNameSanitize`    | sanitizing metric names  (getting rid of forbidden characters): `true` or `false` | `true`
+ `keyNameSanitize`    | sanitizing metric names  (remove forbidden characters): `true` or `false` | `true`
  `flush_counts`       | processing flush counts: `true` or `false`                                        | `true`
  `atsd`               | container for all backend-specific options                                        | -
  `atsd.host`          | ATSD hostname                                                                     | -
@@ -57,18 +55,20 @@ Possible variables:
 
 Other variables used by StatsD itself can be specified.
 
-As of now, the StatsD team has an [open bug](https://github.com/etsy/statsd/issues/462) regarding the inability for config to reload on the fly at times. So, if you change the config file while StatsD is running, it might crash. Until the bug is fixed you can add `automaticConfigReload: false` to your config, but remember to restart StatsD for the changes to take effect.
+StatsD has an [open bug](https://github.com/etsy/statsd/issues/462) regarding the inability for configuration to sometimes reload during operation. Changing the configuration file while StatsD is running, may result in StatsD crashing. Until the bug is fixed, add `automaticConfigReload: false` to your configuration, restart StatsD for the changed configuration to take effect.
 
  Patterns
 ----------
 
-If a metric name matches regexp `pattern`, it will be parsed according to `atsd_pattern`.
+Patterns enable the conversion of native StatsD metric names into ATSD entity/metric/tags.
 
-**NOTE: every `\` in `pattern` must be duplicated.**
+If a metric name matches regexp pattern, it will be parsed according to `atsd_pattern`.
+
+*NOTE: every \ in pattern must be duplicated.*
 
 If a metric name has more tokens than `atsd_pattern`, extra tokens are cropped.
 
-Let's assume the metric name in question is `alfa.bravo.charlie.delta` and the default entity is `zulu`.
+`alfa.bravo.charlie.delta` is used as an example metric and the default example entity is `zulu`.
 
  token            | description                                                                                           | atsd-pattern                            | result
 ------------------|-------------------------------------------------------------------------------------------------------|-----------------------------------------|--------------------------------------------------
