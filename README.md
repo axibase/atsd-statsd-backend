@@ -8,7 +8,7 @@ ATSD backend for StatsD enables you to forward metrics collected by StatsD daemo
 
 To learn how to use StatsD and its backends visit the project's [GitHub page](https://github.com/etsy/statsd).
 
-This backend can be installed using ```npm``` while in StatsD directory:
+This backend can be installed using ```npm```:
 
 ```
 $ sudo npm install atsd-statsd-backend
