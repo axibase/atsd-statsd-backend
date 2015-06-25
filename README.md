@@ -1,12 +1,18 @@
  ATSD StatsD Backend
 =====================
 
- Purpose
----------
+ Overview
+----------
 
 ATSD backend for StatsD enables you to forward metrics collected by StatsD daemon into Axibase Time-Series Database for retention, analytics, visualization, and alerting.
 
 To learn how to use StatsD and its backends visit the project's [GitHub page](https://github.com/etsy/statsd).
+
+This backend can be installed using ```npm``` while in StatsD directory:
+
+```
+$ sudo npm install atsd-statsd-backend
+```
 
  Configuration
 --------
