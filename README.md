@@ -8,7 +8,7 @@ ATSD backend for StatsD enables you to forward metrics collected by StatsD daemo
 
 To learn how to use StatsD and its backends visit the project's [GitHub page](https://github.com/etsy/statsd).
 
- Config
+ Configuration
 --------
 
 Configuration file example:
@@ -53,7 +53,7 @@ Possible variables:
  `atsd.prefixSet`     | prefix for set metrics                                                            | `"sets"`
  `atsd.patterns`      | patterns to parse statsd metric names                                             | -
 
-Other variables used by StatsD itself can be specified.
+Other variables used by StatsD can be specified.
 
 StatsD has an [open bug](https://github.com/etsy/statsd/issues/462) regarding the inability for configuration to sometimes reload during operation. Changing the configuration file while StatsD is running, may result in StatsD crashing. Until the bug is fixed, add `automaticConfigReload: false` to your configuration, restart StatsD for the changed configuration to take effect.
 
@@ -62,7 +62,7 @@ StatsD has an [open bug](https://github.com/etsy/statsd/issues/462) regarding th
 
 Patterns enable the conversion of native StatsD metric names into ATSD entity/metric/tags.
 
-If a metric name matches regexp pattern, it will be parsed according to `atsd_pattern`.
+If a metric name matches regexp `pattern`, it will be parsed according to `atsd_pattern`.
 
 *NOTE: every \ in pattern must be duplicated.*
 
