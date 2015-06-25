@@ -37,16 +37,16 @@ Possible variables:
  variable             | description                                                                       | default value
 ----------------------|-----------------------------------------------------------------------------------|----------------
  `debug`              | enable debug logging : `true` or `false`                                          | `false`
- `keyNameSanitize`    | sanitizing metric names  (remove forbidden characters): `true` or `false` | `true`
+ `keyNameSanitize`    | sanitizing metric names  (remove forbidden characters): `true` or `false`         | `true`
  `flush_counts`       | processing flush counts: `true` or `false`                                        | `true`
  `atsd`               | container for all backend-specific options                                        | -
  `atsd.host`          | ATSD hostname                                                                     | -
  `atsd.port`          | ATSD port                                                                         | `8081`
  `atsd.user`          | username                                                                          | `""`
- `atsd.password`      | password to log into ATSD                                                     | `""`
+ `atsd.password`      | password to log into ATSD                                                         | `""`
  `atsd.protocol`      | protocol: `"tcp"` or `"udp"`                                                      | `"tcp"`
  `atsd.entity`        | default entity                                                                    | local hostname
- `atsd.prefix`        | global prefix for each metric                                                    | `""`
+ `atsd.prefix`        | global prefix for each metric                                                     | `""`
  `atsd.prefixCounter` | prefix for counter metrics                                                        | `"counters"`
  `atsd.prefixTimer`   | prefix for timer metrics                                                          | `"timers"`
  `atsd.prefixGauge`   | prefix for gauge metrics                                                          | `"gauges"`
@@ -64,7 +64,7 @@ Patterns enable the conversion of native StatsD metric names into ATSD entity/me
 
 If a metric name matches regexp `pattern`, it will be parsed according to `atsd_pattern`.
 
-*NOTE: every \ in pattern must be duplicated.*
+*NOTE: every \ in `pattern` must be duplicated.*
 
 If a metric name has more tokens than `atsd_pattern`, extra tokens are cropped.
 
