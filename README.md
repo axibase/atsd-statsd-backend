@@ -58,7 +58,7 @@ Possible variables:
  `atsd.prefixGauge`      | prefix for gauge metrics                                                          | `"gauges"`
  `atsd.prefixSet`        | prefix for set metrics                                                            | `"sets"`
  `atsd.patterns`         | patterns to parse statsd metric names                                             | -
- `atsd.commandsPerBatch` | maximum number of series commands to be sent in one batch                         | -
+ `atsd.commandsPerBatch` | maximum number of series commands to be sent in one batch                         | 100
 
 [Other variables used by StatsD can be specified.](https://github.com/etsy/statsd/blob/master/exampleConfig.js)
 
