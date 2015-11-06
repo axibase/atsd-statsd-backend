@@ -40,24 +40,25 @@ Configuration file example:
 
 Possible variables:
 
- variable             | description                                                                       | default value
-----------------------|-----------------------------------------------------------------------------------|----------------
- `debug`              | enable debug logging : `true` or `false`                                          | `false`
- `keyNameSanitize`    | sanitizing metric names  (remove forbidden characters): `true` or `false`         | `true`
- `flush_counts`       | processing flush counts: `true` or `false`                                        | `true`
- `atsd`               | container for all backend-specific options                                        | -
- `atsd.host`          | ATSD hostname                                                                     | -
- `atsd.port`          | ATSD port                                                                         | `8081`
- `atsd.user`          | username                                                                          | `""`
- `atsd.password`      | password to log into ATSD                                                         | `""`
- `atsd.protocol`      | protocol: `"tcp"` or `"udp"`                                                      | `"tcp"`
- `atsd.entity`        | default entity                                                                    | local hostname
- `atsd.prefix`        | global prefix for each metric                                                     | `""`
- `atsd.prefixCounter` | prefix for counter metrics                                                        | `"counters"`
- `atsd.prefixTimer`   | prefix for timer metrics                                                          | `"timers"`
- `atsd.prefixGauge`   | prefix for gauge metrics                                                          | `"gauges"`
- `atsd.prefixSet`     | prefix for set metrics                                                            | `"sets"`
- `atsd.patterns`      | patterns to parse statsd metric names                                             | -
+ variable                | description                                                                       | default value
+-------------------------|-----------------------------------------------------------------------------------|----------------
+ `debug`                 | enable debug logging : `true` or `false`                                          | `false`
+ `keyNameSanitize`       | sanitizing metric names  (remove forbidden characters): `true` or `false`         | `true`
+ `flush_counts`          | processing flush counts: `true` or `false`                                        | `true`
+ `atsd`                  | container for all backend-specific options                                        | -
+ `atsd.host`             | ATSD hostname                                                                     | -
+ `atsd.port`             | ATSD port                                                                         | `8081`
+ `atsd.user`             | username                                                                          | `""`
+ `atsd.password`         | password to log into ATSD                                                         | `""`
+ `atsd.protocol`         | protocol: `"tcp"` or `"udp"`                                                      | `"tcp"`
+ `atsd.entity`           | default entity                                                                    | local hostname
+ `atsd.prefix`           | global prefix for each metric                                                     | `""`
+ `atsd.prefixCounter`    | prefix for counter metrics                                                        | `"counters"`
+ `atsd.prefixTimer`      | prefix for timer metrics                                                          | `"timers"`
+ `atsd.prefixGauge`      | prefix for gauge metrics                                                          | `"gauges"`
+ `atsd.prefixSet`        | prefix for set metrics                                                            | `"sets"`
+ `atsd.patterns`         | patterns to parse statsd metric names                                             | -
+ `atsd.commandsPerBatch` | maximum number of series commands to be sent in one batch                         | -
 
 [Other variables used by StatsD can be specified.](https://github.com/etsy/statsd/blob/master/exampleConfig.js)
 
