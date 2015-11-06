@@ -27,13 +27,13 @@ Configuration file example:
         protocol: "udp",
         patterns: [
             {
-                pattern: "alfa\\..*\\.charlie\\..*$",
-                atsd_pattern: "<entity>.<>.<tag:test>.<metric>"
+                pattern: ".*",
+                atsd_pattern: "<entity>.<metrics>"
             }
         ]
     },
     port: 8125,
-    backends: [ "./backends/atsd" ],
+    backends: [ "./node_modules/atsd-statsd-backend/lib/atsd" ],
     debug: true
 }
 ```
