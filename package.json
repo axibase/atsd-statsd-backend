@@ -1,7 +1,7 @@
 {
 
   "name": "atsd-statsd-backend",
-  "version": "0.1.0",
+  "version": "0.1.1",
 
   "description": "A backend for StatsD to flush stats into ATSD",
   "author": "Mark Ezhkov <markezhkov@gmail.com>",
