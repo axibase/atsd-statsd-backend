@@ -22,9 +22,9 @@ Configuration file example:
 ```
 {
     atsd : {
-        host: "192.168.1.233",
-        port: 8082,
-        protocol: "udp",
+        host: "atsd_server",
+        port: 8081,
+        protocol: "tcp",
         patterns: [
             {
                 pattern: ".*",
