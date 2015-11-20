@@ -73,21 +73,21 @@
 
 {
     atsd : {
-        host: "192.168.1.233",
-        port: 8082,
-        protocol: "udp",
+        host: "atsd_server",
+        port: 8081,
+        protocol: "tcp",
         patterns: [
             {
-                pattern: ".*bad_lines_seen.*$",
-                atsd_pattern: "<tag:test>.<metric>"
+                pattern: "^([^.]+\.){2}com\..+",
+                atsd_pattern: "<entity>.<>.<>.<metrics>"
             },
             {
-                pattern: "alfa\\..*\\.charlie\\..*$",
-                atsd_pattern: "<entity>.<>.<tag:test>.<metric>"
+                pattern: ".*",
+                atsd_pattern: "<entity>.<metrics>"
             }
         ]
     },
     port: 8125,
-    backends: [ "./backends/atsd" ],
+    backends: [ "./node_modules/atsd-statsd-backend/lib/atsd" ],
     debug: true
 }
