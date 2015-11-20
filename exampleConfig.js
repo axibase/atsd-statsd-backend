@@ -78,7 +78,7 @@
         protocol: "tcp",
         patterns: [
             {
-                pattern: "^([^.]+\.){2}com\..+",
+                pattern: "^([^.]+\\.){2}com\\..+",
                 atsd_pattern: "<entity>.<>.<>.<metrics>"
             },
             {
