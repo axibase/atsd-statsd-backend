@@ -27,11 +27,11 @@ Configuration file example:
         protocol: "tcp",
         patterns: [
             {
-                pattern: "^([^.]+\\.){2}com\\..+",
+                pattern: /^([^.]+\.){2}com\..+/,
                 atsd_pattern: "<entity>.<>.<>.<metrics>"
             },
             {
-                pattern: ".*",
+                pattern: /.*/,
                 atsd_pattern: "<entity>.<metrics>"
             }
         ]
@@ -74,8 +74,6 @@ StatsD has an [open bug](https://github.com/etsy/statsd/issues/462) regarding th
 Patterns enable the conversion of native StatsD metric names into ATSD entity/metric/tags.
 
 If a metric name matches regexp `pattern`, it will be parsed according to `atsd_pattern`.
-
-*NOTE: every \ in `pattern` must be duplicated.*
 
 If a metric name has more tokens than `atsd_pattern`, extra tokens are cropped.
 
