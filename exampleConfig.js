@@ -32,13 +32,12 @@
 
  patterns: [
      {
-         pattern: ".*\\.wordpress\\..*$",
+         pattern: /^.+\.wordpress\..+$/,
          atsd_pattern: "<metric>.<>.<entity>.<metrics>.<tag:url>"
      }, ...
  ]
 
  if a metric name matches regexp 'pattern', it will be parsed according to 'atsd_pattern'
- NOTE: every "\" in 'pattern' must be duplicated
 
  if a metric name has more tokens than 'atsd_pattern', extra tokens are cropped
 
@@ -78,11 +77,11 @@
         protocol: "tcp",
         patterns: [
             {
-                pattern: "^([^.]+\\.){2}com\\..+",
+                pattern: /^([^.]+\.){2}com\..+/,
                 atsd_pattern: "<entity>.<>.<>.<metrics>"
             },
             {
-                pattern: ".*",
+                pattern: /.*/,
                 atsd_pattern: "<entity>.<metrics>"
             }
         ]
