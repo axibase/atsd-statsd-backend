@@ -1,11 +1,8 @@
 {
-
   "name": "atsd-statsd-backend",
-  "version": "0.1.1",
-
+  "version": "0.1.2",
   "description": "A backend for StatsD to flush stats into ATSD",
   "author": "Mark Ezhkov <markezhkov@gmail.com>",
-
   "repository": {
     "type": "git",
     "url": "https://github.com/axibase/atsd-statsd-backend.git"
@@ -14,7 +11,9 @@
     "url": "https://github.com/axibase/atsd-statsd-backend/issues"
   },
   "main": "lib/atsd.js",
-  
-  "license": "Apache-2.0"
-
+  "license": "Apache-2.0",
+  "dependencies": {
+    "net": "^1.0.2",
+    "os": "^0.1.1"
+  }
 }
