@@ -1,21 +1,16 @@
- ATSD StatsD Backend
-=====================
+# ATSD StatsD Backend
 
- Overview
-----------
+## Overview
 
-ATSD backend for StatsD enables you to forward metrics collected by StatsD daemon into Axibase Time-Series Database for retention, analytics, visualization, and alerting.
+ATSD backend for [StatsD](https://github.com/etsy/statsd) enables you to forward metrics collected by StatsD daemon into Axibase Time-Series Database for retention, analytics, visualization, and alerting.
 
-To learn how to use StatsD and its backends visit the project's [GitHub page](https://github.com/etsy/statsd).
-
-This backend can be installed using ```npm```:
+This backend can be installed using `npm`.
 
 ```
 $ sudo npm install atsd-statsd-backend
 ```
 
- Configuration
---------
+## Configuration
 
 Configuration file example:
 
@@ -42,9 +37,9 @@ Configuration file example:
 }
 ```
 
-Possible variables:
+### Supported variables
 
- variable                | description                                                                       | default value
+ Variable                | Description                                                                       | Default Value
 -------------------------|-----------------------------------------------------------------------------------|----------------
  `debug`                 | enable debug logging : `true` or `false`                                          | `false`
  `keyNameSanitize`       | sanitizing metric names  (remove forbidden characters): `true` or `false`         | `true`
@@ -64,12 +59,9 @@ Possible variables:
  `atsd.patterns`         | patterns to parse statsd metric names                                             | -
  `atsd.commandsPerBatch` | maximum number of series commands to be sent in one batch                         | 100
 
-[Other variables used by StatsD can be specified.](https://github.com/etsy/statsd/blob/master/exampleConfig.js)
+> Other [StatsD variables](https://github.com/etsy/statsd/blob/master/exampleConfig.js) can be specified as well.
 
-StatsD has an [open bug](https://github.com/etsy/statsd/issues/462) regarding the inability for configuration to sometimes reload during operation. Changing the configuration file while StatsD is running, may result in StatsD crashing. Until the bug is fixed, add `automaticConfigReload: false` to your configuration, restart StatsD for the changed configuration to take effect.
-
- Patterns
-----------
+## Patterns
 
 Patterns enable the conversion of native StatsD metric names into ATSD entity/metric/tags.
 
@@ -79,7 +71,7 @@ If a metric name has more tokens than `atsd_pattern`, extra tokens are cropped.
 
 `alfa.bravo.charlie.delta` is used as an example metric and the default example entity is `zulu`.
 
- token            | description                                                                                           | atsd-pattern                            | result
+ Token            | Description                                                                                           | atsd-pattern                            | Result
 ------------------|-------------------------------------------------------------------------------------------------------|-----------------------------------------|--------------------------------------------------
  `<metric>`       | metric token; multiple occurrences are combined                                                       | `<metric>.<metric>.<metric>`            | `series e:zulu m:alfa.bravo.charlie ...`
  `<entity>`       | entity token to replace the default entity; multiple occurrences are combined                         | `<entity>.<metric>.<entity>.<metric>`   | `series e:alfa.charlie m:bravo.delta ...`
