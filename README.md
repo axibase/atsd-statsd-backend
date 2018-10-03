@@ -11,7 +11,7 @@
 
 ## Overview
 
-The **ATSD Backend** for [StatsD](https://github.com/etsy/statsd) forwards metrics collected by the StatsD daemon into [Axibase Time-Series Database](https://axibase.com/docs/atsd/) for retention, analytics, visualization, and alerting.
+The **ATSD Backend** for [StatsD](https://github.com/etsy/statsd) forwards metrics collected by the StatsD daemon into [Axibase Time Series Database](https://axibase.com/docs/atsd/) for retention, analytics, visualization, and alerting.
 
 Install the ATSD Backend with `npm`.
 
