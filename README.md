@@ -1,20 +1,29 @@
-# ATSD StatsD Backend
+# ATSD Backend for StatsD
+
+![](./images/axibase-and-statsd.png)
+
+## Table of Contents
+
+* [Overview](#overview)
+* [Configuration](#configuration)
+  * [Supported Variables](#supported-variables)
+* [Patterns](#patterns)
 
 ## Overview
 
-ATSD backend for [StatsD](https://github.com/etsy/statsd) enables you to forward metrics collected by StatsD daemon into Axibase Time-Series Database for retention, analytics, visualization, and alerting.
+The **ATSD Backend** for [StatsD](https://github.com/etsy/statsd) forwards metrics collected by the StatsD daemon into [Axibase Time-Series Database](https://axibase.com/docs/atsd/) for retention, analytics, visualization, and alerting.
 
-This backend can be installed using `npm`.
+Install the ATSD Backend with `npm`.
 
-```
-$ sudo npm install atsd-statsd-backend
+```sh
+sudo npm install atsd-statsd-backend
 ```
 
 ## Configuration
 
-Configuration file example:
+Example configuration file:
 
-```
+```sh
 {
     atsd : {
         host: "atsd_server",
@@ -37,33 +46,33 @@ Configuration file example:
 }
 ```
 
-### Supported variables
+### Supported Variables
 
- Variable                | Description                                                                       | Default Value
--------------------------|-----------------------------------------------------------------------------------|----------------
- `debug`                 | enable debug logging : `true` or `false`                                          | `false`
- `keyNameSanitize`       | sanitizing metric names  (remove forbidden characters): `true` or `false`         | `true`
- `flush_counts`          | processing flush counts: `true` or `false`                                        | `true`
- `atsd`                  | container for all backend-specific options                                        | -
- `atsd.host`             | ATSD hostname                                                                     | -
- `atsd.port`             | ATSD port                                                                         | `8081`
- `atsd.user`             | username                                                                          | `""`
- `atsd.password`         | password to log into ATSD                                                         | `""`
- `atsd.protocol`         | protocol: `"tcp"` or `"udp"`                                                      | `"tcp"`
- `atsd.entity`           | default entity                                                                    | local hostname
- `atsd.prefix`           | global prefix for each metric                                                     | `""`
- `atsd.prefixCounter`    | prefix for counter metrics                                                        | `"counters"`
- `atsd.prefixTimer`      | prefix for timer metrics                                                          | `"timers"`
- `atsd.prefixGauge`      | prefix for gauge metrics                                                          | `"gauges"`
- `atsd.prefixSet`        | prefix for set metrics                                                            | `"sets"`
- `atsd.patterns`         | patterns to parse statsd metric names                                             | -
- `atsd.commandsPerBatch` | maximum number of series commands to be sent in one batch                         | 100
+ Variable| Description| Default Value
+:--|:--|:--
+ `debug`       | Enable debug logging.<br>Possible values: `true`, `false`.| `false`
+ `keyNameSanitize`       | Sanitize metric names by removing forbidden characters.<br>Possible values: `true`, `false`.| `true`
+ `flush_counts` | Process flush counts.<br>Possible values: `true`, `false`. | `true`
+ `atsd`         | Container for all Backend-specific options.  | `-`
+ `atsd.host`    | ATSD hostname.   | `-`
+ `atsd.port`    | ATSD port.       | `8081`
+ `atsd.user`    | Username.        | `""`
+ `atsd.password`         | Password for ATSD login.| `""`
+ `atsd.protocol`         | Protocol.<br>Possible values: `"tcp"`, `"udp"`.       | `"tcp"`
+ `atsd.entity`  | Default entity.  | Local hostname.
+ `atsd.prefix`  | Global prefix for each metric.      | `""`
+ `atsd.prefixCounter`    | Prefix for counter metrics         | `"counters"`
+ `atsd.prefixTimer`      | Prefix for timer metrics. | `"timers"`
+ `atsd.prefixGauge`      | Prefix for gauge metrics. | `"gauges"`
+ `atsd.prefixSet`        | Prefix for set metrics.   | `"sets"`
+ `atsd.patterns`         | Patterns to parse statsd metric names.       | `-`
+ `atsd.commandsPerBatch` | Maximum number of series commands to be sent per batch.      | `100`
 
-> Other [StatsD variables](https://github.com/etsy/statsd/blob/master/exampleConfig.js) can be specified as well.
+> Specify other [StatsD variables](https://github.com/etsy/statsd/blob/master/exampleConfig.js) as well.
 
 ## Patterns
 
-Patterns enable the conversion of native StatsD metric names into ATSD entity/metric/tags.
+Patterns convert of native StatsD metric names into the ATSD [schema](https://axibase.com/docs/atsd/#schema).
 
 If a metric name matches regexp `pattern`, it will be parsed according to `atsd_pattern`.
 
@@ -71,10 +80,10 @@ If a metric name has more tokens than `atsd_pattern`, extra tokens are cropped.
 
 `alfa.bravo.charlie.delta` is used as an example metric and the default example entity is `zulu`.
 
- Token            | Description                                                                                           | atsd-pattern                            | Result
-------------------|-------------------------------------------------------------------------------------------------------|-----------------------------------------|--------------------------------------------------
- `<metric>`       | metric token; multiple occurrences are combined                                                       | `<metric>.<metric>.<metric>`            | `series e:zulu m:alfa.bravo.charlie ...`
- `<entity>`       | entity token to replace the default entity; multiple occurrences are combined                         | `<entity>.<metric>.<entity>.<metric>`   | `series e:alfa.charlie m:bravo.delta ...`
- `<tag:tag_name>` | token for the tag named `tag_name`                                                                    | `<entity>.<tag:test>.<metric>.<metric>` | `series e:alfa m:charlie.delta t:test=bravo ...`
- `<>`             | token to be excluded                                                                                  | `<entity>.<tag:test>.<>.<metric>`       | `series e:alfa m:delta t:test=bravo ...`
- `<metrics>`      | any number of metric tokens; can be used once per pattern; can also be omitted: `<entity>..<tag:url>` | `<entity>.<tag:test>.<metrics>`         | `series e:alfa m:charlie.delta t:test=bravo ...`
+ Token   | Description      | `atsd-pattern`         | Result
+:--|:--|:--|:--|
+ `<metric>`       | Metric token.<br> Multiple occurrences are combined.        | `<metric>.<metric>.<metric>`   | `series e:zulu m:alfa.bravo.charlie ...`
+ `<entity>`       | Entity token to replace default entity.<br> Multiple occurrences are combined.      | `<entity>.<metric>.<entity>.<metric>`   | `series e:alfa.charlie m:bravo.delta ...`
+ `<tag:tag_name>` | Token for the tag `tag_name`.  | `<entity>.<tag:test>.<metric>.<metric>` | `series e:alfa m:charlie.delta t:test=bravo ...`
+ `<>`    | Excluded token.     | `<entity>.<tag:test>.<>.<metric>`       | `series e:alfa m:delta t:test=bravo ...`
+ `<metrics>`      | Metric tokens.<br>Use once per pattern.<br>Omission is permissible: `<entity>..<tag:url>` | `<entity>.<tag:test>.<metrics>`         | `series e:alfa m:charlie.delta t:test=bravo ...`
